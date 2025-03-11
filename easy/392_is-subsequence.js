@@ -26,11 +26,14 @@
  * @return {boolean}
  */
 var isSubsequence = function(s, t) {
-    const rec = (i, j) => {
-        if (i === s.length) return true;
-        if (j === t.length) return false;
-        if (s[i] === t[j]) return rec(i + 1, j + 1);
-        return rec(i, j + 1);
-    };
-    return rec(0, 0);
+    let i = 0;
+    let j = 0;
+
+    while(i < s.length && j < t.length){
+        if(s.charAt(i) == t.charAt(j)){
+            i++;
+        }
+        j++;
+    }
+    return i == s.length;
 };

@@ -1,2 +1,2 @@
 # leetcode-answers
-Solutions that I have made on my own for Leetcode problems
+A combination of solutions I have found on my own and optimal solutions I am learning.

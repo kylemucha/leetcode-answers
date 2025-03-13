@@ -32,18 +32,29 @@
  * @return {boolean}
  */
 var isPalindrome = function(s) {
-    let stack1 = [];
-    let stack2 = [];
+    let l = 0, r = s.length - 1;
 
-    for(let i = 0; i < s.length; i ++){
-        stack1.push(s[i]);
+    while (l < r) {
+        while (l < r && !this.alphaNum(s[l])) {
+            l++;
+        }
+        while (r > l && !this.alphaNum(s[r])) {
+            r--;
+        }
+        if (s[l].toLowerCase() !== s[r].toLowerCase()) {
+            return false;
+        }
+        l++; r--;
     }
+    return true;
+}
 
-    for (let i = s.length - 1; i >= 0; i--){
-        stack2.push(s[i]);
-    }
-
-    for(let i = 0; i < stack2.length; i++){
-        
-    }
+/**
+ * @param {char} c
+ * @return {boolean}
+ */
+alphaNum(c) {
+    return (c >= 'A' && c <= 'Z' || 
+            c >= 'a' && c <= 'z' || 
+            c >= '0' && c <= '9');
 };

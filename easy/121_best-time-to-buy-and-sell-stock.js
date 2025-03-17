@@ -3,5 +3,5 @@
  * @return {number}
  */
 var maxProfit = function(prices) {
-    //Planning on implementing a sliding window approach to this problem
-};
+    //still need to implement a sliding window approach to this problem
+    };

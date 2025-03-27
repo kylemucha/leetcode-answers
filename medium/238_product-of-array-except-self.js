@@ -34,24 +34,18 @@
  * @param {number[]} nums
  * @return {number[]}
  */
-var productExceptSelf = function(nums) {
-    let prefix = [];
-    let suffix = [];
-    let answer = [];
+var productExceptSelf = function(nums) { 
+    const n = nums.length;
+        const res = new Array(n).fill(1);
 
-    prefix.push(1);
-    for(let i = 1; i < nums.length; i++){
-            prefix.push(prefix[i - 1] * nums[i - 1]);
-    }
-
-    suffix[nums.length - 1] = 1;
-    for(let i = nums.length - 2; i >= 0; i--){      
-            suffix[i] = suffix[i + 1] * nums[i + 1];
-    }
-
-    for(let i = 0; i < nums.length; i++){
-        answer[i] = suffix[i] * prefix[i];
-    }
-
-    return answer;
+        for (let i = 1; i < n; i++) {
+            res[i] = res[i - 1] * nums[i - 1];
+        }
+        
+        let postfix = 1;
+        for (let i = n - 1; i >= 0; i--) {
+            res[i] *= postfix;
+            postfix *= nums[i];
+        }
+        return res;
 };

@@ -43,22 +43,26 @@
  * @return {boolean}
  */
 var isValid = function(s) {
-    const stack = [];
-    const check = new Map();
-    check.set(')' , '(');
-    check.set('}' , '{');
-    check.set(']' , '[');
+    let stack = [];
 
-    for(let char of s){
-        if(check.has(char)) {
-            let top = stack.pop();
-            if(top !== check.get(char)) {
-                return false;
-            } 
-        } else {
-            stack.push(char);
+    for(let i = 0; i < s.length; i++){
+
+        if(s[i] === '(' || '[' || '{'){
+            stack.push(s[i]);
+        } else if (s[i] === ')'){
+            if(stack.pop !== '(')
+            return false;
+            break;
+        } else if (s[i] === ']'){
+            if(stack.pop !== '[')
+            return false;
+            break;
+        } else if (s[i] === '}'){
+            if(stack.pop !== '{')
+            return false;
+            break;
         }
-    }
 
-    return stack.length === 0;
+        return true;
+    }
 };

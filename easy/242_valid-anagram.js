@@ -35,23 +35,36 @@ var isAnagram = function(s, t) {
         return false;
     }
 
-    let count = new Map();
+    let map1 = new Map();
+    let map2 = new Map();
+    let buffer = 0;
 
-    for(let char of s) {
-        count.set(char, (count.get(char) || 0) + 1);
-    }
-
-    for(let char of t) {
-        if(!count.has(char)){
-            return false;
-        }  
-
-        count.set(char, count.get(char) -1);
-        
-        if(count.get(char) === 0){
-            count.delete(char);
+    for(let i = 0; i < s.length; i++){
+        if(map1.has(s[i])){
+            buffer = map1.get(s[i]);
+            buffer += 1;
+            map1.set(s[i],buffer);
+        } else {
+            map1.set(s[i],0);
         }
-
     }
-    return count.size === 0;
+
+    for(let i = 0; i < t.length; i++){
+        if(map1.has(t[i])){
+            buffer = map1.get(s[i]);
+            buffer -= 1;
+            map1.set(s[i],buffer)
+        } else {
+            return false;
+        }
+    }
+
+    for (const value of map1.values()) {
+    if (value !== -1) {
+      return false;
+    } else {
+        return true;
+    }
+  }
+  
 };

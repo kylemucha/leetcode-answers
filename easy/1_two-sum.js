@@ -37,15 +37,14 @@
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
-    let map = new Map();
-
+    let ans = [];
     for(let i = 0; i < nums.length; i++){
-        let diff = target - nums[i];
-
-        if(map.has(diff)) {
-            return [map.get(diff), i];
+        for(let j = i + 1; j < nums.length; j++){
+            if(nums[i] + nums[j] === target){
+                ans.push(i);
+                ans.push(j);
+            }
         }
-        map.set(nums[i], i);
     }
-    return [];
+    return ans;
 };

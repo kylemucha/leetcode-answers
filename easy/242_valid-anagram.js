@@ -30,44 +30,23 @@
  * @return {boolean}
  */
 var isAnagram = function(s, t) {
-
-    if(s.length !== t.length){
+    if (s.length !== t.length){
         return false;
     }
 
-    let map1 = new Map();
-    let map2 = new Map();
+    let mapS = {};
+    let mapT = {};
 
-
-    //want to find a solution that doesn't use this buffer variable
-    let buffer = 0;
-
-    for(let i = 0; i < s.length; i++){
-        if(map1.has(s[i])){
-            buffer = map1.get(s[i]);
-            buffer += 1;
-            map1.set(s[i],buffer);
-        } else {
-            map1.set(s[i],0);
-        }
+    for (let i = 0; i < s.length; i++){
+        mapS[s[i]] = (mapS[s[i]] || 0) + 1;
+        mapT[t[i]] = (mapT[t[i]] || 0) + 1;
     }
 
-    for(let i = 0; i < t.length; i++){
-        if(map1.has(t[i])){
-            buffer = map1.get(s[i]);
-            buffer -= 1;
-            map1.set(s[i],buffer)
-        } else {
+    for (let key in mapS){
+        if(mapS[key] !== mapT[key]) {
             return false;
         }
     }
 
-    for (const value of map1.values()) {
-    if (value !== -1) {
-      return false;
-    } else {
-        return true;
-    }
-  }
-  
+    return true;
 };

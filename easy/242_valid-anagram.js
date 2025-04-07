@@ -37,6 +37,9 @@ var isAnagram = function(s, t) {
 
     let map1 = new Map();
     let map2 = new Map();
+
+
+    //want to find a solution that doesn't use this buffer variable
     let buffer = 0;
 
     for(let i = 0; i < s.length; i++){

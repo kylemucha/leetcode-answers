@@ -31,6 +31,8 @@
 
 // Follow-up: Can you come up with an algorithm that is less than O(n2) time complexity?
 
+
+//SLOW SOLUTION USING NESTED FOR LOOP - O(n^2)         
 /**
  * @param {number[]} nums
  * @param {number} target

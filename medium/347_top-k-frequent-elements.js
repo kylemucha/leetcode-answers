@@ -20,36 +20,31 @@
 // It is guaranteed that the answer is unique.
 
 
-/**
- * @param {number[]} nums
- * @param {number} k
- * @return {number[]}
- */
-var topKFrequent = function(nums, k) {
-    let map = new Map();
-    let result = [];
+class Solution {
+    /**
+     * @param {number[]} nums
+     * @param {number} k
+     * @return {number[]}
+     */
+    topKFrequent(nums, k) {
+        const count = {};
+        const freq = Array.from({ length: nums.length + 1 }, () => []);
 
+        for (const n of nums) {
+            count[n] = (count[n] || 0) + 1;
+        }
+        for (const n in count) {
+            freq[count[n]].push(parseInt(n));
+        }
 
-    for(let i = 0; i < nums.length; i++){
-        if(map.has(nums[i])){
-            map.set(nums[i], (map.get(nums[i])) + 1);
-        } else {
-            map.set(nums[i], 1);
+        const res = [];
+        for (let i = freq.length - 1; i > 0; i--) {
+            for (const n of freq[i]) {
+                res.push(n);
+                if (res.length === k) {
+                    return res;
+                }
+            }
         }
     }
-
-    let curr = 1;
-
-        for(let i = 0; i < map.size; i++){
-            if(map[i] > map[curr]){
-                result.push(map[i])
-            } else {
-                curr++;
-            }
-            if(result.length >= k){
-                return result;
-            }
-        }
-
-    return result;
-};
+}

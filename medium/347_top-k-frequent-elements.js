@@ -27,6 +27,6 @@ class Solution {
      * @return {number[]}
      */
     topKFrequent(nums, k) {
-  //doing some more research on this problem and practicing the logic before implementing it.      
+  //research needed    
 }
 };
